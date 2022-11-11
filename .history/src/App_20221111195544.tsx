@@ -32,9 +32,15 @@ function App() {
           </ul>
 
           <Routes>
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/portfolio">
+              <Portfolio />
+            </Route>
+            <Route path="/resume">
+              <Resume />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
           </Routes>
         </nav>
       </Router>
