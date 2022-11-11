@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -12,6 +19,13 @@ function App() {
       clearInterval(timer);
     };
   });
+  let isEven = true;
+
+  if (time.getTime() % 2 === 0) {
+    isEven = true;
+  } else {
+    isEven = false;
+  }
 
   return (
     <>
