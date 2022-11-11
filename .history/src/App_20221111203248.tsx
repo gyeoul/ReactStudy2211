@@ -60,24 +60,15 @@ function App() {
               items={items}
             />
           </Sider>
-          <Layout style={{ padding: "0 24px 24px" }}>
-            <Content
-              className="site-layout-background"
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-              }}
-            >
-              <b>현재시간: {time.toLocaleTimeString()}</b>
-              <br />
-              <Routes>
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/" element={<Home />} />
-              </Routes>
-            </Content>
-          </Layout>
+          <Layout.Content style={{ padding: "0 24px 24px" }}>
+            <b>현재시간: {time.toLocaleTimeString()}</b>
+            <br />
+            <Routes>
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/resume" element={<Resume />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </Layout.Content>
         </nav>
       </Router>
     </Layout>

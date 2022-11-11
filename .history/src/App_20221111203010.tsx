@@ -40,6 +40,8 @@ function App() {
 
   return (
     <Layout className="layout">
+      <b>현재시간: {time.toLocaleTimeString()}</b>
+      <br />
       <Router>
         <nav>
           <Header className="header">
@@ -52,32 +54,37 @@ function App() {
             />
           </Header>
           <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%", borderRight: 0 }}
-              items={items}
-            />
-          </Sider>
-          <Layout style={{ padding: "0 24px 24px" }}>
-            <Content
-              className="site-layout-background"
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-              }}
-            >
-              <b>현재시간: {time.toLocaleTimeString()}</b>
-              <br />
-              <Routes>
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/" element={<Home />} />
-              </Routes>
-            </Content>
-          </Layout>
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          style={{ height: '100%', borderRight: 0 }}
+          items={items}
+        />
+      </Sider>
+      <Layout style={{ padding: '0 24px 24px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item>
+        </Breadcrumb>
+        <Content
+          className="site-layout-background"
+          style={{
+            padding: 24,
+            margin: 0,
+            minHeight: 280,
+          }}
+        >
+          Content
+        </Content>
+      </Layout>
+    </Layout>
+          <Routes>
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
         </nav>
       </Router>
     </Layout>

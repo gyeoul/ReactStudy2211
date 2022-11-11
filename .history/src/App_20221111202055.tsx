@@ -11,21 +11,26 @@ import { Breadcrumb, Layout, Menu } from "antd";
 
 const { Header, Content, Sider } = Layout;
 
+const items1: MenuProps["items"] = ["home", "resume", "portfolio"].map(
+  (key) => ({
+    key,
+    label: `nav ${key}`,
+  })
+);
 const items: MenuProps["items"] = [
   {
     key: 1,
-    label: <Link to="/">Home</Link>,
+    label: "home",
   },
   {
     key: 2,
-    label: <Link to="/resume">이력서</Link>,
+    label: "resume",
   },
   {
     key: 3,
-    label: <Link to="/portfolio">포트폴리오</Link>,
+    label: "portfolio",
   },
 ];
-
 function App() {
   const [time, setTime] = useState(new Date());
   const timer = setInterval(() => {
@@ -40,44 +45,36 @@ function App() {
 
   return (
     <Layout className="layout">
+      <b>현재시간: {time.toLocaleTimeString()}</b>
+      <br />
       <Router>
         <nav>
           <Header className="header">
             <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={["1"]}
-              items={items}
-            />
+            <ul>
+              <Menu
+                theme="dark"
+                mode="horizontal"
+                defaultSelectedKeys={["1"]}
+                items={items}
+              />
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/resume">이력서</Link>
+              </li>
+              <li>
+                <Link to="/portfolio">포트폴리오</Link>
+              </li>
+            </ul>
           </Header>
-          <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%", borderRight: 0 }}
-              items={items}
-            />
-          </Sider>
-          <Layout style={{ padding: "0 24px 24px" }}>
-            <Content
-              className="site-layout-background"
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-              }}
-            >
-              <b>현재시간: {time.toLocaleTimeString()}</b>
-              <br />
-              <Routes>
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/" element={<Home />} />
-              </Routes>
-            </Content>
-          </Layout>
+
+          <Routes>
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
         </nav>
       </Router>
     </Layout>

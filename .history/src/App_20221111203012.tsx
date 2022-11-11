@@ -40,6 +40,8 @@ function App() {
 
   return (
     <Layout className="layout">
+      <b>현재시간: {time.toLocaleTimeString()}</b>
+      <br />
       <Router>
         <nav>
           <Header className="header">
@@ -61,6 +63,11 @@ function App() {
             />
           </Sider>
           <Layout style={{ padding: "0 24px 24px" }}>
+            <Breadcrumb style={{ margin: "16px 0" }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
             <Content
               className="site-layout-background"
               style={{
@@ -69,15 +76,14 @@ function App() {
                 minHeight: 280,
               }}
             >
-              <b>현재시간: {time.toLocaleTimeString()}</b>
-              <br />
-              <Routes>
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/" element={<Home />} />
-              </Routes>
+              Content
             </Content>
           </Layout>
+          <Routes>
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
         </nav>
       </Router>
     </Layout>
