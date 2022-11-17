@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 
 const { Header, Content, Sider } = Layout;
 
@@ -56,9 +56,6 @@ function App() {
               />
             </Sider>
             <Layout style={{ padding: "0 24px 24px" }}>
-              <Breadcrumb style={{ margin: '16px 0' }}>
-                <b> 현재시간: {time.toLocaleTimeString()} </b>
-              </Breadcrumb>
               <Content
                 className="site-layout-background"
                 style={{
@@ -67,6 +64,7 @@ function App() {
                   minHeight: 280,
                 }}
               >
+                <b>현재시간: {time.toLocaleTimeString()}</b>
                 <br />
                 <Routes>
                   <Route path="/portfolio" element={<Portfolio />} />
