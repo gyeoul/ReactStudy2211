@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import axios from 'axios';
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, Button } from "antd";
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
@@ -36,13 +35,7 @@ function App() {
   });
 
   const login = useGoogleLogin({
-    onSuccess:async(codeResponse)=>{
-      const {code} = codeResponse
-      console.log(codeResponse);
-      await axios.post("http://localhost:5000/auth/google",{
-        code,
-      });
-    }, //(codeResponse) => console.log(codeResponse),
+    onSuccess: (codeResponse) => console.log(codeResponse),
     flow: "auth-code",
   });
 

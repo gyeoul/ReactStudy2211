@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import axios from 'axios';
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, Button } from "antd";
+import { Breadcrumb, Layout, Menu } from "antd";
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 
 const { Header, Content, Sider } = Layout;
@@ -35,36 +34,27 @@ function App() {
     };
   });
 
-  const login = useGoogleLogin({
-    onSuccess:async(codeResponse)=>{
-      const {code} = codeResponse
-      console.log(codeResponse);
-      await axios.post("http://localhost:5000/auth/google",{
-        code,
-      });
-    }, //(codeResponse) => console.log(codeResponse),
-    flow: "auth-code",
-  });
+  const login = useGoogleLogin(
+    {
+      onSuccess: codeResponse => console.log(codeResponse),
+      flow: 'auth-code',}
+  )
 
   return (
     <Layout className="layout">
       <Router>
-        <Button
-          onClick={() => {
-            login();
-          }}
-        >
-          Login
-        </Button>
-        <GoogleLogin
-          auto_select
-          onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
+          <button onClick={()=>{
+            login()
+          }}>Login</button>
+          <GoogleLogin
+            auto_select
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
         <Header className="header">
           <div className="logo" />
           <Menu
