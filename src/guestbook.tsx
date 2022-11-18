@@ -8,27 +8,6 @@ type GuestBookItem = {
   content: string,
   username: string,
 }
-const sample: GuestBookItem[] = [
-  {
-    key: 1,
-    title: "hello",
-    content: "first comment",
-    username: "Gyeoul"
-  },
-  {
-    key: 2,
-    title: "hello",
-    content: "second comment",
-    username: "Gyeoul"
-  },
-  {
-    key: 3,
-    title: "hello",
-    content: "third comment",
-    username: "Gyeoul"
-  }
-];
-
 const Guestbook = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data,setData] = useState<GuestBookItem[]>([]);
