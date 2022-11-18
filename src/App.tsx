@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import axios from 'axios';
+import axios from "axios";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, Button } from "antd";
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import Guestbook from "./guestbook";
+
 
 const { Header, Content, Sider } = Layout;
 
 const items: MenuProps["items"] = [
   {
     key: 1,
-    label: <Link to="/">Home</Link>,
+    label: <Link to="/">Home</Link>
   },
   {
     key: 2,
-    label: <Link to="/resume">이력서</Link>,
+    label: <Link to="/resume">이력서</Link>
   },
   {
     key: 3,
-    label: <Link to="/portfolio">포트폴리오</Link>,
+    label: <Link to="/portfolio">포트폴리오</Link>
   },
+  {
+    key: 4,
+    label: <Link to="/guestbook">방명록</Link>
+  }
 ];
 
 function App() {
@@ -36,14 +42,14 @@ function App() {
   });
 
   const login = useGoogleLogin({
-    onSuccess:async(codeResponse)=>{
-      const {code} = codeResponse
+    onSuccess: async (codeResponse) => {
+      const { code } = codeResponse;
       console.log(codeResponse);
-      await axios.post("http://localhost:5000/auth/google",{
-        code,
+      await axios.post("http://localhost:5000/auth/google", {
+        code
       });
     }, //(codeResponse) => console.log(codeResponse),
-    flow: "auth-code",
+    flow: "auth-code"
   });
 
   return (
@@ -93,12 +99,13 @@ function App() {
               style={{
                 padding: 24,
                 margin: 0,
-                minHeight: 280,
+                minHeight: 280
               }}
             >
               <br />
               <Routes>
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/guestbook" element={<Guestbook />} />
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/" element={<Home />} />
               </Routes>
@@ -136,5 +143,6 @@ const Portfolio = () => {
 const Home = () => {
   return <>home</>;
 };
+
 
 export default App;
